@@ -9,18 +9,22 @@ I created this website to prep for office hours, mainly to practice setting it u
 2. Open the terminal (shortcut: Control + backtick (`)).
 
     - Type and enter: `quarto create project website`
-    - Enter your desired website name: `first-last.github.io`
+    - Enter your desired website name: `yourGitHubUsername.github.io`. This must match your GitHub username **exactly** for your site to live at `https://yourGitHubUsername.github.io`.
+        - If you already have a `yourGitHubUsername.github.io` site, pick any other name (e.g., `my-class-site`). Your site will then live at `https://yourGitHubUsername.github.io/my-class-site/`.
     - Enter the title: `First Last`
+    - This creates a **new subfolder** with your website name. Open that new folder in Positron (File → Open Folder) before continuing.
 
-3. Publish the folder to a public GitHub repository via Positron. Commit, pull, and push as you make changes to your website.
+3. Add `_site/` to the `.gitignore` file (on its own line) so the preview build folder isn't uploaded to GitHub.
 
-4. You now have a couple of new files. `index.qmd` is the homepage, `about.qmd` is the About page, and `_quarto.yml` is essentially the blueprint for the website. You can also edit `index.qmd` and `about.qmd` to your liking. You can also create new `.qmd` files for additional pages and add them to `_quarto.yml`. 
+4. Publish the folder to a **public** GitHub repository via Positron (you'll be asked to sign in to GitHub the first time). Commit, pull, and push as you make changes to your website.
 
-5. Add any desired documents (resume, photos, posters, presentation slides, etc.) to this new folder. These documents can be placed in a subfolder named `files`.
+5. You now have a couple of new files. `index.qmd` is the homepage, `about.qmd` is the About page, and `_quarto.yml` is essentially the blueprint for the website. You can also edit `index.qmd` and `about.qmd` to your liking. You can also create new `.qmd` files for additional pages and add them to `_quarto.yml`. 
 
-6. Click the **Preview** button to see what your website looks like.
+6. Add any desired documents (resume, photos, posters, presentation slides, etc.) to this new folder. These documents can be placed in a subfolder named `files`.
 
-7. When you're ready to publish your website, follow the steps in this helpful [link](https://quarto.org/docs/publishing/github-pages.html) to publish your website to GitHub Pages. Essentially, do the following:
+7. Click the **Preview** button to see what your website looks like.
+
+8. When you're ready to publish your website, follow the steps in this helpful [link](https://quarto.org/docs/publishing/github-pages.html) to publish your website to GitHub Pages. Essentially, do the following:
 
     - Add `output-dir: docs` to the `_quarto.yml` file under `type: website`.
 
@@ -29,7 +33,8 @@ I created this website to prep for office hours, mainly to practice setting it u
         - Add a `.nojekyll` file to the root of your repository:
 
             - Mac/Linux: `touch .nojekyll`
-            - Windows: `copy NUL .nojekyll`
+            - Windows (PowerShell, Positron's default terminal): `New-Item .nojekyll -ItemType File`
+            - Or simply create an empty file named `.nojekyll` in the folder.
 
         - Run the following in the terminal:
 
@@ -42,6 +47,8 @@ I created this website to prep for office hours, mainly to practice setting it u
 
     - Finally, configure your GitHub repository to publish from the `docs` directory of your `main` branch. On github.com, go to the **Settings** tab of your GitHub repository, then **Pages**. Select `main` as the branch and `/docs` as the folder. Click **Save**.
 
-8. Refresh and view your deployed website. It may take a few minutes for the website or new changes to appear.
+    - If you include R code chunks (like the Projects page), make sure R and the packages you use (e.g., `rmarkdown`, `tidyverse`) are installed, or `quarto render` will fail.
 
-9. **KEY:** Every time you make a change to your website, you must hit the Preview button and then commit and push those changes so that the HTML is updated. The changes will not be reflected on your website until you do this. It may take a few minutes for the changes to appear. Just refresh.
+9. Refresh and view your deployed website at `https://yourGitHubUsername.github.io` (or `https://yourGitHubUsername.github.io/repo-name/` if you used a different repository name). It may take a few minutes for the website or new changes to appear.
+
+10. **KEY:** Every time you make a change to your website, you must run `quarto render` in the terminal and then commit and push those changes so that the HTML in `docs/` is updated. (Preview is great for checking your work locally, but it doesn't reliably rebuild the whole site.) The changes will not be reflected on your website until you do this. It may take a few minutes for the changes to appear. Just refresh.
